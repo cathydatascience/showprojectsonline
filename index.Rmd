@@ -74,7 +74,29 @@ You can go ahead and write your R markdown file, or open your previously created
 We will have Git remember the changes we have made, that is to commit the changes. You check the boxes of the two new files (for me, three) and then click **Commit** on the top panel just below **Git**. 
 
 You will see the changes we have made. Type in some comments to describe the change (for example, add a graph, or first commit etc.). Press the **Commit** button. 
-![image3_4](./image/image3_5.png)
+![image3_5](./image/image3_5.png)
+
+It returns with a summary message. Just close the window. You are back to the previous window. Press the **Push** button on the top right corner of the commit message box. Your files will be pushed to the GitHub repository. 
+![image3_6](./image/image3_6.png)
+
+Close the message window. You can check your GitHub account. The local files that you just commited in the local computer are now pushed to the repo. 
+![image3_7](./image/image3_7.png)
+
+You are now ready to see your html live online. Scroll up to your GitHub repo and click on **Settings**.
+![image3_8](./image/image3_8.png)
+
+Scroll down to the section **GitHub Pages**. Under **Source**, choose **master branch** from source. 
+![imaage3_9](./image/image3_9.png)
+
+It will take a while for GitHub to publish your html file online. In the meanwhile, it looks like below. 
+![image3_10](./image/image3_10.png)
+When the link in blue turns green after refreshing the page, you can click on it. 
+
+Oops! It shows you the README.md file content. It is an easy fix. You can append the name of your html file in the repository. For example, my file's name is "howtopublish". I will add howtopublish.html to "http://cathydatascience.github.io/showprojectsonline" and use the link: http://cathydatascience.github.io/showprojectsonline/howtopublish.html 
+
+Alternatively, I can change my file's name to "index". I will just change my R markdown file and knit it again before pushing them to my GitHub account. 
+
+
 
 
 
