@@ -1,0 +1,19 @@
+---
+title: "How to publish project online?"
+author: "Cathy Gao"
+date: "August 7, 2019"
+output: html_document
+---
+
+```{r setup, include=FALSE}
+knitr::opts_chunk$set(echo = TRUE)
+```
+
+If you use R markdown files in RStudio and have a GitHub account, you are already ready to publish your papers/projects online. You can share the link to your target audience or use the website to showcase what you know. 
+
+When you have your content ready, putting them on the internet takes less than half an hour if you have only one paper, or about one hour if you use the same structure as this website (with minor revision). I assume that you know how to knit your R Markdown file to html and have the files on a repository on your GitHub account. Here is how.  
+
+## Publish one paper
+
+There are three ways to post an article online (so far that I know) using GitHub. The first method is to use [the html viewer](http://htmlpreview.github.io/).  
+
