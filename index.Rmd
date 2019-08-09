@@ -41,7 +41,7 @@ Alternatively, you can use the RPubs which is integrated in your knitted html fi
 It is a two-step process. First step, you need to register a RPubs account or sign in if you already have one. You write the title of your document and give a short description (so that other may find your paper from search). You can see the example below (the highlight is my RPubs account name). 
 ![image](./image/image2_1.png)
 
-Once you are done and click the **Continue** button at the bottom, you will be directly to the published paper. For example, this paper is available at http://rpubs.com/cathydatascience/518481 
+Once you are done and click the **Continue** button at the bottom, you will be directly to the published paper. For example, this paper is available at http://rpubs.com/cathydatascience/518692 
 
 You can choose to update your content when you make changes to the paper on your computer by clicking the **Publish** button from your knitted html file. 
 
@@ -94,7 +94,98 @@ When the link in blue turns green after refreshing the page, you can click on it
 
 Oops! It shows you the README.md file content. It is an easy fix. You can append the name of your html file in the repository. For example, my file's name is "howtopublish". I will add howtopublish.html to "http://cathydatascience.github.io/showprojectsonline" and use the link: http://cathydatascience.github.io/showprojectsonline/howtopublish.html 
 
-Alternatively, I can change my file's name to "index". I will just change my R markdown file and knit it again before pushing them to my GitHub account. 
+Alternatively, I can change my file's name to "index". I will just change my R markdown file and knit it again before pushing them to my GitHub account. Now, click the link and it will work like a charm. By default, GitHub looks for index.html first and if it is absent, it will use README.md file for publishing sites. 
+![image3_11](./image/image3_11.png)
+
+#### Publish from the __master/doc__ branch on a GitHub repo
+
+When we'd like to separate the R markdown file and the html file (maybe some associated graphs etc.), we choose to publish from the __master/doc__ folder. It is also the way to publish a collection of articles with some structures (the next section). The steps are almost identical with the two places that are different. 
+
+I will use my class project to demonstrate the steps. The URL of the repo is: https://github.com/cathydatascience/PracticalMachineLearning_Project
+
+Before you knit your R markdown file, add the following under the **title** section. 
+```{r eval=FALSE}
+knit: (function(input_file, encoding) {
+  out_dir <- 'docs';
+  rmarkdown::render(input_file, 
+  encoding=encoding,
+  output_file=file.path(dirname(input_file), out_dir, 'index.html'))})
+```
+![image3_12](./image/image3_12.png)
+
+Your index.html file will be knitted to the __doc__ sub-folder in your local computer. Repeat the process of commit and push the files to your GitHub account from RStudio. 
+
+When you change the publishing from source, instead of choose __master branch__, you need to pick __master/doc branch__. 
+![image3_13](./image/image3_13.png)
+When you click on the link after a while, you will see your html file. It is live online!
+
+## Publish a collection of papers on a website
+
+The website uses `rmarkdown` package that provides a simple site generator. It is for putting together a few R markdown files into a website. All the R mardown files are under one directory with no subdirectories. The key advantage is that you can publish the website online with a least amount of time invested.
+
+Before I show you how to do it, I'd like to suggest that you read about the examples from the [section](https://bookdown.org/yihui/rmarkdown/rmarkdown-site.html) of **_rmarkdown's site generator_** in the book **R Markdown: the definitive guide**. They help you get an idea of the components of the website structure and how you can change them. Also, build a simple website to see how it works. Here is the [guide](https://resources.github.com/whitepapers/github-and-rstudio/) that I used before building the website. 
+
+When you have the R markdown files (content ready to generate the html files) ready, you need to put togeher a list of instructions to tell `rmarkdown` how you'd like to arrange the files. It is a [**_site.yml**](https://github.com/cathydatascience/DataScienceJHU_PracticalMachineLearning/blob/master/_site.yml) file, which can be written in a text editor. Feel free to make changes to content and see how those affect the layout.  
+
+If you want to publish from the __master__ branch on GitHub, use ![image4](./image/image4.png). All the html files will be put togehter with the rmd files under the __master__ branch. My website produced this way is available at: https://cathydatascience.github.io/DataScienceJHU_PracticalMachineLearning/
+  
+
+If you publish from the __master/doc__ branch, use ![image4_1](./image/image4_1.png). The html files will be put separate in the __/doc__ folder. The duplicate website published from __master/doc__ branch is at: https://cathydatascience.github.io/duplicate/
+
+It is important to have an index page in the **_site.yml** file. Otherwise, the `rmarkdown` command will not work. Equally important is that you should not capitalize the Index.html file - use index.html. Otherwise, GitHub will not find the file for publication. The bottom line is if you are able to run the site in your local computer, you shall be able to publish online. 
+
+Last but not least, the GitBash command lines work faster when you have many files to be committed, and pushed to GitHub. The commands are enclosed in Appendix. 
+
+
+## Appendix - GitBash Commands
+
+When you start a new project on GitHub, you will navigate to your folder which is to link to the GitHub repository and use the following commands on GitBash.  
+
+Start a new project, you will type: 
+`> git init`
+
+After you have your files ready (written in RStudio), you will commit them on your Git (local computer): 
+`> git add . #there are many options like -A`
+`> git commit -m "msg"`
+
+Then, you will want to upload the files to your GitHub account. If you have not linked your GitHub account to the local folder, you will type: 
+`> git remote add origin URL-GitHub-repo`
+
+If you have created a new R Project from RStudio through Version Control and Git (as shown in the article), you can skip the step. You also see `(master)` after you navigate to your project folder. 
+
+To store your files to GitHub, 
+`> git push -u origin master #there are options that follow and you can google`
+
+The above are the basics. If you want to create a copy of what you have so far, experiment with it and only put back the stuff you are happy with to the original, you can create a branch different from the master branch (you are typically at for a new repo). 
+
+` >git branch yourpick #create yourpick branch`
+
+` >git checkout yourpick #switch from master to yourpick branch`
+
+You can continue to create files in your local computer, commit to Git and then push to GitHub. Note that you are operating under the `yourpick` branch. When you feel happy with what you have and are ready to bring the files to `master` branch and then delete `yourpick` branch. You type the following commands. 
+
+`> git push -u origin yourpick #store files under yourpick branch`
+
+On GitHub, you can create a pull request. Since you own the repo (no collaborator yet), you will be able to just merge pull request by clicking the button and then confirm the merge. After see the files are now under `master` branch, you are ready to delete the `yourpick` branch. 
+
+`> git checkout master #change to master branch in your local computer`
+`> git pull #copy the files to your local folder`
+`> git branch -D yourpick #delete yourpick branch`
+
+To check the status of your branch and your commits, here is the list of commands:
+
+`> git status`
+
+`> git log --online #see the history of commits`
+`> git log --online --graph --all # see commit history in a graph`
+
+`> git diff --stat -summary master..yourpick #see changes between the two branches`
+
+
+
+
+
+
 
 
 
